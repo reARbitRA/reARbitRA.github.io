@@ -1,53 +1,71 @@
 @echo off
-title GitHub Profile Deployer
+chcp 65001 >nul
+title 🚀 KONKRED GitHub Pages Deployer
 
 echo.
-echo ╔═══════════════════════════════════════════════════╗
-echo ║       GITHUB PROFILE DEPLOYER v1.0               ║
-echo ║       Dark Brutalist Theme                        ║
-echo ╚═══════════════════════════════════════════════════╝
+echo ╔═══════════════════════════════════════════════════════════════╗
+echo ║        KONKRED GITHUB PROFILE DEPLOYER v1.0                   ║
+echo ║        Built for: Ari Miyanji @ reARbitRA                      ║
+echo ╚═══════════════════════════════════════════════════════════════╝
 echo.
 
-echo 📝 Step 1: Open this file in a text editor and fill in:
-echo    - YOUR_GITHUB_USERNAME (line 15)
-echo    - YOUR_EMAIL (line 17)
-echo    - YOUR_NAME (line 19)
+echo 📋 STEP 1: Create GitHub Repository
+echo    ┌─────────────────────────────────────────────────────────────┐
+echo    │  1. Go to: https://github.com/new                          │
+echo    │  2. Repository name: reARbitRA.github.io                   │
+echo    │  3. Set to PUBLIC                                          │
+echo    │  4. Click "Create repository"                              │
+echo    └─────────────────────────────────────────────────────────────┘
 echo.
 
-echo 🌐 Step 2: Go to https://github.com and create a NEW repository:
-echo    Name it exactly: YOUR_USERNAME.github.io
-echo    (Example: if your username is "cooldev", name it "cooldev.github.io")
+echo 🔑 STEP 2: Get GitHub Personal Access Token
+echo    ┌─────────────────────────────────────────────────────────────┐
+echo    │  1. Go to: https://github.com/settings/tokens              │
+echo    │  2. Click "Generate new token" (classic)                   │
+echo    │  3. Select scope: "repo" (full control)                    │
+echo    │  4. Generate and COPY the token                            │
+echo    └─────────────────────────────────────────────────────────────┘
 echo.
 
-echo 🔑 Step 3: Generate a Personal Access Token:
-echo    - Go to: Settings > Developer Settings > Personal Access Tokens
-echo    - Click: Generate new token (classic)
-echo    - Select: repo (full control)
-echo    - Copy the token and paste it below
-echo.
-
-set /p GITHUB_TOKEN="Paste your GitHub Token here: "
+set /p TOKEN="Paste your GitHub Token here and press Enter: "
 
 echo.
-echo 🚀 Deploying to GitHub Pages...
+echo 🚀 STEP 3: Deploying...
 echo.
 
 REM Initialize git
 git init
+git config user.name "Ari Miyanji"
+git config user.email "ari@konkred.xyz"
+
+REM Add all files
 git add .
-git commit -m "🚀 Initial commit - Dark Brutalist GitHub Profile"
 
-REM Add remote (replace with your actual repo URL)
-git remote add origin https://github.com/YOUR_USERNAME/YOUR_USERNAME.github.io.git
+REM Commit
+git commit -m "🚀 KONKRED Profile - AI Architect & Strategic Innovator"
 
-REM Push to GitHub
+REM Add remote with token
+git remote remove origin 2>nul
+git remote add origin https://%TOKEN%@github.com/reARbitRA/reARbitRA.github.io.git
+
+REM Push
+echo.
+echo ════════════════════════════════════════════════════════════════
 git push -u origin main --force
+echo ════════════════════════════════════════════════════════════════
+echo.
 
-echo.
-echo ✅ Done! Your site should be live at:
-echo    https://YOUR_USERNAME.github.io
-echo.
-echo ⏳ Note: It may take 1-2 minutes to go live.
-echo.
+if %errorlevel% equ 0 (
+    echo.
+    echo ✅ SUCCESS! Your profile is now live at:
+    echo    👉 https://reARbitRA.github.io
+    echo.
+    echo ⏳ Note: It may take 1-2 minutes to go live.
+    echo.
+) else (
+    echo.
+    echo ❌ Deployment failed. Please check your token and try again.
+    echo.
+)
 
 pause
