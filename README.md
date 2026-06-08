@@ -1,4 +1,4 @@
-# 👋 Hi, I'm [Your Name]!
+# 👋 Hi, I'm Ari!
 
 [![Profile Views](https://komarev.com/ghpvc/?username=YOUR_USERNAME&label=Profile+Views&color=ccff00&style=for-the-badge)](https://github.com/YOUR_USERNAME)
 
